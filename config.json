@@ -1,0 +1,182 @@
+{
+  "_leia_me": "Parametros do painel. Edite aqui e rode de novo; nao mexa no codigo das etapas.",
+  "preco_diesel": 6.45,
+  "_ravex_offset_horas": "AJUSTE TEMPORARIO DE FUSO. Os horarios do campo Tempo_DataHora do Ravex.csv estao 3 horas adiantados em relacao ao horario operacional. Enquanto a Ravex nao corrigir na origem, o motor soma este offset antes de qualquer analise temporal. Quando a Ravex corrigir, troque -3 por 0 AQUI e rode de novo: nao ha nenhum outro lugar no codigo com esse numero.",
+  "ravex_offset_horas": -3,
+  "_painel_jornada_url": "Endereco do indicador independente de Jornada do motorista. O botao do cabecalho aponta para ca. Vazio = botao desabilitado, sem link falso.",
+  "painel_jornada_url": "https://performancedajornada.netlify.app/",
+  "_whatsapp": "true = cada ciclo gera TAMBEM a versao interna com WhatsApp, em '4 uso interno/painel_interno.html'. Essa pasta nunca vai para o Netlify. A versao publica (2 publicar) nunca leva telefones, com true ou false.",
+  "whatsapp_ativo": true,
+  "whatsapp_mensagem": "Olá, {nome}! Segue o seu cartão de desempenho do período {periodo}. Qualquer dúvida sobre os números, é só falar comigo.",
+  "refs": {
+    "MAN 480": 2.3,
+    "DAF XF 480": 2.7,
+    "MAN 525": 1.8,
+    "VW Constellation": 2.0
+  },
+  "faixas": {
+    "DAF XF 480": {
+      "alvo": [
+        2.7,
+        2.9
+      ],
+      "piso": 2.2,
+      "mont": [
+        2.2,
+        2.4
+      ],
+      "misto": [
+        2.7,
+        2.9
+      ],
+      "plano": [
+        3.0,
+        3.2
+      ]
+    }
+  },
+  "bandas": {
+    "DAF XF 480": {
+      "mont": [
+        2.2,
+        2.4
+      ],
+      "misto": [
+        2.7,
+        2.9
+      ],
+      "plano": [
+        3.0,
+        3.2
+      ],
+      "nota": "Faixa de campo para XF FTS 480 no Brasil com carga de 30 a 33 t: serra ou tráfego intenso 2,2–2,4; trecho misto 2,7–2,9; rodovia plana com condução econômica 3,0–3,2, com picos de 3,4–3,5. O CRLV do TDT1H97 confirma o modelo exato da frota (DAF/XF FTS 480 SSC, 480 cv, 2024/2025) e a operação da CRG foi informada como até ~33 t, então a faixa aplicável é a de trecho misto: 2,70 a 2,90 km/l. Ficha técnica oficial DAF: PACCAR MX-13 de 12,9 L, 480 cv a 1.600 rpm, torque 2.350/2.500 Nm entre 900 e 1.365 rpm — o motor não é MX-11."
+    },
+    "MAN 480": {
+      "nota": "Referência interna CRG de 2,30 km/l, herdada do painel de abastecimento. NÃO foi validada com dado de campo nem com ficha técnica — são todos os cavalos MAN 480 classificados por um número que ninguém conferiu. Tratar como provisória."
+    },
+    "MAN 525": {
+      "nota": "Referência interna CRG, não validada. Uma única placa na frota: sem par de comparação."
+    },
+    "VW Constellation": {
+      "nota": "Referência interna CRG, não validada. Uma única placa na frota."
+    }
+  },
+  "crlv": {
+    "placa": "TDT1H97",
+    "modelo": "DAF/XF FTS 480 SSC",
+    "ano": "2024/2025",
+    "potencia": "480 cv",
+    "pbt": 23.0,
+    "cmt": 60.0,
+    "eixos": 3,
+    "especie": "Tração — caminhão trator",
+    "cabine": "Cabine estendida (Super Space Cab)",
+    "orgao": "DETRAN-MG",
+    "emissao": "25/02/2025",
+    "carga_informada": "até ~33 t de peso bruto combinado (informado pela CRG)"
+  },
+  "score_regras": [
+    [
+      "Eficiência vs meta",
+      30,
+      "Aderência do km/l ao mínimo da faixa do modelo. 70% de aderência vale 0; 100% vale os 30 pontos."
+    ],
+    [
+      "Condução em faixa verde",
+      20,
+      "Percentual do tempo de motor ligado nas faixas verde e verde econômica. 20% vale 0; 70% vale os 20 pontos."
+    ],
+    [
+      "Controle de marcha lenta",
+      5,
+      "Percentual do tempo parado com motor ligado. Até 10% vale os 5 pontos; 35% ou mais vale 0."
+    ],
+    [
+      "Respeito à velocidade",
+      10,
+      "Percentual do tempo acima do limite. Até 5% vale os 10 pontos; 35% ou mais vale 0."
+    ],
+    [
+      "Segurança e conduta",
+      20,
+      "Pontos ponderados de evento de segurança e fadiga por 100 km. Zero vale os 20 pontos; 80 ou mais vale 0."
+    ],
+    [
+      "Consistência",
+      10,
+      "Percentual dos dias com km/l igual ou acima do piso do modelo."
+    ],
+    [
+      "Evolução no período",
+      5,
+      "Variação do km/l da segunda metade do período contra a primeira. -5% vale 0; +5% vale os 5 pontos."
+    ]
+  ],
+  "tela_ravex": {
+    "km_cards": 11360,
+    "L_cards": 7661,
+    "kml_cards": 1.483,
+    "km_tab": 29518,
+    "L_tab": 10450,
+    "ev_tela": 20983,
+    "ev_csv": 20985
+  },
+  "_tela_ravex_obs": "Numeros lidos na tela da Ravex para a aba de reconciliacao. Sao do periodo 04-08/09/2026: atualize a cada ciclo ou deixe null para ocultar a comparacao.",
+  "ssw_periodo_rotulo": "04/09/2026 a 08/09/2026",
+  "modelos_nome_completo": {
+    "MAN 480": "MAN D26 480cv (Meteor 28.480 / 25.480 6x2)",
+    "DAF XF 480": "DAF XF FTS 480 6x2 Super Space Cab · PACCAR MX-13 12,9 L · 480 cv (355 kW) @1.600 rpm · 2.350/2.500 Nm entre 900 e 1.365 rpm",
+    "MAN 525": "MAN D26 525cv (Meteor 29.530 6x4)",
+    "VW Constellation": "VW Constellation 25-480 6x2"
+  },
+  "placa_modelo": {
+    "SJB5D52": "VW Constellation",
+    "SJU6H64": "MAN 525",
+    "SET5E71": "MAN 480",
+    "SJB7B18": "MAN 480",
+    "SET4E30": "MAN 480",
+    "SJB5D54": "MAN 480",
+    "SEQ7A39": "MAN 480",
+    "SJK0E77": "MAN 480",
+    "SET4E26": "MAN 480",
+    "SJK2H11": "MAN 480",
+    "SET4E25": "MAN 480",
+    "SJK3E65": "MAN 480",
+    "SEY6J85": "MAN 480",
+    "SJK6B23": "MAN 480",
+    "TDW4H54": "DAF XF 480",
+    "SEY6J84": "MAN 480",
+    "SET4E50": "MAN 480",
+    "SJL0A26": "MAN 480",
+    "SET4E51": "MAN 480",
+    "SEQ6D18": "MAN 480",
+    "SJL8B04": "MAN 480",
+    "SJL9B48": "MAN 480",
+    "SJK2F03": "MAN 480",
+    "SEQ6D30": "MAN 480",
+    "SET5E70": "MAN 480",
+    "SET5E72": "MAN 480",
+    "SET5E65": "MAN 480",
+    "SJK4E80": "MAN 480",
+    "SFE5H29": "MAN 480",
+    "SET5E66": "MAN 480",
+    "SJL5E42": "MAN 480",
+    "SEY6J87": "MAN 480",
+    "SET4E39": "MAN 480",
+    "TDT1I02": "DAF XF 480",
+    "TDS8H64": "DAF XF 480",
+    "TDW7B03": "DAF XF 480",
+    "TDS8I49": "DAF XF 480",
+    "TDT1F78": "DAF XF 480",
+    "TDS6H58": "DAF XF 480",
+    "TDS9C52": "DAF XF 480",
+    "TDW4H84": "DAF XF 480",
+    "TDT1H97": "DAF XF 480",
+    "TDW4H79": "DAF XF 480",
+    "TDS9C49": "DAF XF 480",
+    "SEY6J80": "MAN 480"
+  },
+  "_placa_modelo_obs": "Cadastro placa -> modelo. Placa nova sem entrada aqui entra no painel sem modelo e sem meta: acrescente a linha e rode de novo.",
+  "_mapa_obs": "Mapa de fundo dos trajetos: OpenFreeMap (gratuito, sem chave, uso comercial permitido, dados do OpenStreetMap). mapa_estilo = endereco do estilo. Trocar aqui se mudar de provedor.",
+  "mapa_estilo": "https://tiles.openfreemap.org/styles/liberty"
+}
